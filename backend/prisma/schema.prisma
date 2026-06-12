@@ -14,3 +14,40 @@ model users {
   password String? @db.VarChar(255)
   role     String? @default("user") @db.VarChar(20)
 }
+
+model Department {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[]
+}
+
+model Skill {
+  id        Int             @id @default(autoincrement())
+  name      String          @unique
+  employees EmployeeSkill[]
+}
+
+model Employee {
+  id          Int             @id @default(autoincrement())
+  name        String
+  email       String          @unique
+  departmentId Int
+
+  department  Department      @relation(fields: [departmentId], references: [id])
+  skills      EmployeeSkill[]
+
+  profileImage String?
+  resume       String?
+  document     String?
+}
+
+model EmployeeSkill {
+  id         Int      @id @default(autoincrement())
+  employeeId Int
+  skillId    Int
+
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  skill      Skill    @relation(fields: [skillId], references: [id])
+
+  @@unique([employeeId, skillId])
+}

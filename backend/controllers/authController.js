@@ -29,10 +29,11 @@ const signup = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("SIGNUP ERROR:", error);
 
     res.status(500).json({
-      message: "Server Error"
+      message: "Server Error",
+      error: error.message
     });
   }
 };
@@ -52,10 +53,14 @@ const login = async (req, res) => {
       });
     }
 
-    const validPassword = await bcrypt.compare(
-      password,
-      user.rows[0].password
-    );
+  console.log("HASH:", user.rows[0].password);
+
+const validPassword = await bcrypt.compare(
+  password,
+  user.rows[0].password
+);
+
+console.log("VALID:", validPassword);
 
     if (!validPassword) {
       return res.status(400).json({
@@ -81,10 +86,11 @@ const login = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("LOGIN ERROR:", error);
 
     res.status(500).json({
-      message: "Server Error"
+      message: "Server Error",
+      error: error.message
     });
   }
 };
@@ -99,10 +105,11 @@ const profile = async (req, res) => {
     res.json(user.rows[0]);
 
   } catch (error) {
-    console.error(error);
+    console.error("PROFILE ERROR:", error);
 
     res.status(500).json({
-      message: "Server Error"
+      message: "Server Error",
+      error: error.message
     });
   }
 };

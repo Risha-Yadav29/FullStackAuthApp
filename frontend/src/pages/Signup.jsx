@@ -18,7 +18,7 @@ function Signup() {
   const handleSignup = async () => {
     try {
       const res = await axios.post(
-        "https://fullstackauthapp-backend.onrender.com/api/auth/signup",
+        "http://localhost:5000/api/auth/signup",
         formData
       );
 

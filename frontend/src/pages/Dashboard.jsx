@@ -12,7 +12,7 @@ function Dashboard() {
         console.log("TOKEN:", token);
 
         const res = await axios.get(
-          "https://fullstackauthapp-backend.onrender.com/api/auth/profile",
+          "http://localhost:5000/api/auth/profile"  ,
           {
             headers: {
               Authorization: `Bearer ${token}`
