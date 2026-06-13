@@ -9,6 +9,8 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import Employees from "./pages/Employees";
+import Leaves from "./pages/Leaves";
+import LeaveApprovals from "./pages/LeaveApprovals";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
@@ -47,6 +49,24 @@ function App() {
           element={
             <ProtectedRoute>
               <Employees />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/leaves"
+          element={
+            <ProtectedRoute>
+              <Leaves />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/leave-approvals"
+          element={
+            <ProtectedRoute>
+              <LeaveApprovals />
             </ProtectedRoute>
           }
         />

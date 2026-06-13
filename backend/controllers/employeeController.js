@@ -99,9 +99,30 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
+const getEmployeeCount = async (req, res) => {
+  try {
+
+    const result = await pool.query(
+      `SELECT COUNT(*) FROM "Employee"`
+    );
+
+    res.json({
+      totalEmployees: result.rows[0].count
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Server Error"
+    });
+  }
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
   updateEmployee,
-  deleteEmployee
+  deleteEmployee,
+  getEmployeeCount
 };

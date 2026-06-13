@@ -35,49 +35,171 @@ function Signup() {
   };
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>Signup</h1>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #E9D5FF, #DDD6FE, #C4B5FD)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+        fontFamily: "Arial, sans-serif"
+      }}
+    >
 
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        onChange={handleChange}
+      <div
+        style={{
+          position: "absolute",
+          width: "300px",
+          height: "300px",
+          borderRadius: "50%",
+          background: "#C084FC",
+          top: "-100px",
+          left: "-100px",
+          opacity: 0.25
+        }}
       />
 
-      <br />
-      <br />
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        onChange={handleChange}
+      <div
+        style={{
+          position: "absolute",
+          width: "350px",
+          height: "350px",
+          borderRadius: "50%",
+          background: "#A855F7",
+          bottom: "-120px",
+          right: "-120px",
+          opacity: 0.2
+        }}
       />
 
-      <br />
-      <br />
+      <div
+        style={{
+          width: "420px",
+          background: "rgba(255,255,255,0.85)",
+          backdropFilter: "blur(15px)",
+          padding: "40px",
+          borderRadius: "20px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+          color: "#6B21A8"
+        }}
+      >
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={handleChange}
-      />
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "38px",
+            lineHeight: "1.2",
+            marginBottom: "15px",
+            color: "#A855F7"
+          }}
+        >
+          iSOFTZone HRMS
+        </h1>
 
-      <br />
-      <br />
+        <p
+          style={{
+            textAlign: "center",
+            marginBottom: "8px"
+          }}
+        >
+          Employee Management Portal
+        </p>
 
-      <button onClick={handleSignup}>
-        Signup
-      </button>
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "13px",
+            color: "#7E22CE",
+            marginBottom: "25px"
+          }}
+        >
+          Create your account to continue
+        </p>
 
-      <br />
-      <br />
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          onChange={handleChange}
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            border: "none",
+            marginBottom: "15px",
+            boxSizing: "border-box"
+          }}
+        />
 
-      <a href="/login">
-        Go To Login
-      </a>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          onChange={handleChange}
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            border: "none",
+            marginBottom: "15px",
+            boxSizing: "border-box"
+          }}
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            border: "none",
+            marginBottom: "20px",
+            boxSizing: "border-box"
+          }}
+        />
+
+        <button
+          onClick={handleSignup}
+          style={{
+            width: "100%",
+            padding: "14px",
+            background: "#A855F7",
+            color: "white",
+            border: "none",
+            borderRadius: "10px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            fontSize: "16px"
+          }}
+        >
+          Create Account
+        </button>
+
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "20px"
+          }}
+        >
+          Already have an account?{" "}
+          <a
+            href="/login"
+            style={{
+              color: "#7E22CE"
+            }}
+          >
+            Login
+          </a>
+        </p>
+
+      </div>
+
     </div>
   );
 }

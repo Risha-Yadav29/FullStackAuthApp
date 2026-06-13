@@ -1,3 +1,4 @@
+const leaveRoutes = require("./routes/leaveRoutes");
 const express = require("express");
 const cors = require("cors");
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);
+app.use("/api/leaves", leaveRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend Running");

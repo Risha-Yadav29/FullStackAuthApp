@@ -7,8 +7,15 @@ const {
   createEmployee,
   getEmployees,
   updateEmployee,
-  deleteEmployee
+  deleteEmployee,
+  getEmployeeCount
 } = require("../controllers/employeeController");
+
+router.get(
+  "/count",
+  authMiddleware,
+  getEmployeeCount
+);
 
 router.post(
   "/",

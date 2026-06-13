@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function Employees() {
@@ -8,6 +8,8 @@ function Employees() {
     departmentId: ""
   });
 
+  const [employees, setEmployees] = useState([]);
+
   const handleChange = (e) => {
     setEmployee({
       ...employee,
@@ -15,12 +17,39 @@ function Employees() {
     });
   };
 
+  const fetchEmployees = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:5000/api/employees",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      setEmployees(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+  const loadEmployees = async () => {
+    await fetchEmployees();
+  };
+
+  loadEmployees();
+}, []);
+
   const createEmployee = async () => {
     try {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "https://fullstackauthapp-backend.onrender.com/api/employees",
+        "http://localhost:5000/api/employees",
         employee,
         {
           headers: {
@@ -37,9 +66,9 @@ function Employees() {
         departmentId: ""
       });
 
+      fetchEmployees();
     } catch (error) {
       console.error(error);
-
       alert("Failed To Create Employee");
     }
   };
@@ -56,7 +85,8 @@ function Employees() {
         onChange={handleChange}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="email"
@@ -66,7 +96,8 @@ function Employees() {
         onChange={handleChange}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="number"
@@ -76,11 +107,38 @@ function Employees() {
         onChange={handleChange}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <button onClick={createEmployee}>
         Create Employee
       </button>
+
+      <hr />
+
+      <h2>Employees List</h2>
+
+      <table border="1" cellPadding="10">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department ID</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {employees.map((emp) => (
+            <tr key={emp.id}>
+              <td>{emp.id}</td>
+              <td>{emp.name}</td>
+              <td>{emp.email}</td>
+              <td>{emp.departmentId}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
